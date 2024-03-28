@@ -4,10 +4,10 @@ export class Mail {
   static sendConfig;
   static smtpClient;
 
-  static setup(connectConfig, sendConfig) {
-    this.sendConfig = sendConfig;
+  static setup(config) {
+    this.sendConfig = config.send;
     this.smtpClient = new SmtpClient();
-    return this.smtpClient.connect(connectConfig);
+    return this.smtpClient.connect(config.connect);
   }
 
   static send(sendConfig) {

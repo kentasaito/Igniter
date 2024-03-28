@@ -50,9 +50,7 @@ export class Igniter {
 
         // コントローラがあれば呼び出す
         if (params.routes[req.path]) {
-          data = await (await import(
-            this.params.appPath + "/controllers" + req.path + ".js"
-          )).default(req);
+          data = await params.routes[req.path](req, res);
         }
 
         // ビューを返す
