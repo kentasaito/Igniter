@@ -1,3 +1,4 @@
+import "https://deno.land/std@0.221.0/dotenv/load.ts";
 import { existsSync, serveDir } from "../deps.js";
 import { Kv, Session, Xjs } from "../mod.js";
 
@@ -19,7 +20,7 @@ export class Igniter {
   static async ignite(params) {
     this.params = params;
     await Kv.setup(this.params.kvPath);
-    Deno.serve({ port: this.params.port }, async (req) => {
+    Deno.serve({ port: Deno.env.get("PORT") }, async (req) => {
       const url = new URL(req.url);
       req.path = new URL(req.url).pathname.replace(/\/$/, "/index");
       req.searchParams = Object.fromEntries(url.searchParams.entries());

@@ -4,6 +4,9 @@ import { Igniter } from "../mod.js";
  * PHPのようなSSR
  */
 export class Xjs {
+  req;
+  buffers;
+
   /**
    * Xjsのインスタンス化
    *
